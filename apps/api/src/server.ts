@@ -1,5 +1,5 @@
 import { MikroORM, wrap } from "@mikro-orm/sqlite";
-import { User } from "./modules/user/User.entity.js";
+import { User } from "./modules/user/user.entity.js";
 
 const orm = await MikroORM.init();
 
