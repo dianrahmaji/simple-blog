@@ -1,6 +1,14 @@
-import { Entity, ManyToOne, Property, t } from "@mikro-orm/core";
+import {
+  Collection,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  Property,
+  t,
+} from "@mikro-orm/core";
 import { BaseEntity } from "../common/base.entity.js";
 import { User } from "../user/user.entity.js";
+import { Tag } from "./tag.entity.js";
 
 function convertToSlug(text: string) {
   return text
@@ -25,6 +33,9 @@ export class Article extends BaseEntity<"slug" | "description"> {
 
   @ManyToOne()
   author!: User;
+
+  @ManyToMany({ inversedBy: "articles" })
+  tags = new Collection<Tag>(this);
 
   constructor(title: string, text: string, author: User) {
     super();
