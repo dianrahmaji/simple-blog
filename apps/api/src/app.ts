@@ -1,17 +1,17 @@
-import { MikroORM, RequestContext } from "@mikro-orm/core";
+import { RequestContext } from "@mikro-orm/core";
 import { fastify } from "fastify";
-import { Article } from "./modules/article/article.entity.js";
+import { initORM } from "./db.js";
 
 export async function bootstrap(port = 3001) {
-  const orm = await MikroORM.init();
+  const db = await initORM();
   const app = fastify();
 
   app.addHook("onRequest", (_, __, done) => {
-    RequestContext.create(orm.em, done);
+    RequestContext.create(db.em, done);
   });
 
   app.addHook("onClose", async () => {
-    await orm.close();
+    await db.orm.close();
   });
 
   app.get("/article", async (request) => {
@@ -20,11 +20,7 @@ export async function bootstrap(port = 3001) {
       offset?: number;
     };
 
-    const [items, total] = await orm.em.findAndCount(
-      Article,
-      {},
-      { limit, offset }
-    );
+    const [items, total] = await db.article.findAndCount({}, { limit, offset });
 
     return { items, total };
   });
