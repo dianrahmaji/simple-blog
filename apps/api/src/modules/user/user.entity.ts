@@ -1,4 +1,4 @@
-import { Entity, Property, OneToMany, Collection } from "@mikro-orm/core";
+import { Collection, Entity, OneToMany, Property } from "@mikro-orm/core";
 import * as crypto from "crypto";
 import { BaseEntity } from "../common/base.entity.js";
 import { Article } from "../article/article.entity.js";
