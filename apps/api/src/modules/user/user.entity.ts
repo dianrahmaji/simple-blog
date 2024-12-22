@@ -1,7 +1,15 @@
-import { Entity, Property, OneToMany, Collection } from "@mikro-orm/core";
-import * as crypto from "crypto";
+import {
+  BeforeCreate,
+  BeforeUpdate,
+  Collection,
+  Entity,
+  EventArgs,
+  OneToMany,
+  Property,
+} from "@mikro-orm/core";
 import { BaseEntity } from "../common/base.entity.js";
 import { Article } from "../article/article.entity.js";
+import { hash, verify } from "argon2";
 
 @Entity()
 export class User extends BaseEntity<"bio"> {
@@ -11,7 +19,11 @@ export class User extends BaseEntity<"bio"> {
   @Property()
   email!: string;
 
-  @Property({ hidden: true, lazy: true })
+  /**
+   * FIXME:
+   * - lazy options makes the verifyPassword method error
+   */
+  @Property({ hidden: true })
   password!: string;
 
   @Property({ type: "text" })
@@ -24,10 +36,20 @@ export class User extends BaseEntity<"bio"> {
     super();
     this.fullName = fullName;
     this.email = email;
-    this.password = this.hashPassword(password);
+    this.password = password;
   }
 
-  private hashPassword(password: string) {
-    return crypto.createHmac("sha256", password).digest("hex");
+  @BeforeCreate()
+  @BeforeUpdate()
+  async hashPassword(args: EventArgs<User>) {
+    const password = args.changeSet?.payload.password;
+
+    if (password) {
+      this.password = await hash(password);
+    }
+  }
+
+  async verifyPassword(password: string) {
+    return verify(this.password, password);
   }
 }
