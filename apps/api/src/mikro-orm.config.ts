@@ -3,6 +3,7 @@ import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 
 import { User } from "./modules/user/user.entity.js";
 import { Article } from "./modules/article/article.entity.js";
+import { Tag } from "./modules/article/tag.entity.js";
 
 const config: Options = {
   driver: SqliteDriver,
@@ -11,6 +12,7 @@ const config: Options = {
     //
     User,
     Article,
+    Tag,
   ],
   metadataProvider: TsMorphMetadataProvider,
   debug: true,
