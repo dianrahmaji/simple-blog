@@ -7,6 +7,7 @@
   "packageManager": "pnpm@9.15.0",
   "scripts": {
     "build": "pnpm dlx turbo build",
-    "dev": "pnpm dlx turbo dev"
+    "dev": "pnpm dlx turbo dev",
+    "test": "pnpm dlx turbo test"
   }
 }
