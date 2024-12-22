@@ -6,11 +6,7 @@ const orm = await MikroORM.init();
 
 await orm.schema.refreshDatabase();
 
-const user = new User();
-user.email = "foo@bar.com";
-user.fullName = "Foo bar";
-user.password = "123456";
-
+const user = new User("Foo bar", "foo@bar.com", "123456");
 const em = orm.em.fork();
 
 await em.persist(user).flush();
