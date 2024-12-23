@@ -3,6 +3,7 @@ import {
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   Property,
   t,
 } from "@mikro-orm/core";
@@ -36,6 +37,9 @@ export class Article extends BaseEntity<"slug" | "description"> {
 
   @ManyToMany({ inversedBy: "articles" })
   tags = new Collection<Tag>(this);
+
+  @OneToMany({ mappedBy: "article", eager: true, orphanRemoval: true })
+  comments = new Collection<Comment>(this);
 
   constructor(title: string, text: string, author: User) {
     super();
