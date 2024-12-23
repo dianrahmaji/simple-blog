@@ -19,6 +19,9 @@ const config: Options = {
   metadataProvider: TsMorphMetadataProvider,
   debug: true,
   extensions: [SeedManager, Migrator],
+  migrations: {
+    snapshot: false,
+  },
 };
 
 export default config;
