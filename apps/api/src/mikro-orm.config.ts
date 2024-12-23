@@ -3,8 +3,9 @@ import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 import { SeedManager } from "@mikro-orm/seeder";
 import { Migrator } from "@mikro-orm/migrations";
 
-import { User } from "./modules/user/user.entity.js";
 import { Article } from "./modules/article/article.entity.js";
+import { Comment } from "./modules/article/comment.entity.js";
+import { User } from "./modules/user/user.entity.js";
 import { Tag } from "./modules/article/tag.entity.js";
 
 const config: Options = {
@@ -12,8 +13,9 @@ const config: Options = {
   dbName: "sqlite.db",
   entities: [
     //
-    User,
     Article,
+    Comment,
+    User,
     Tag,
   ],
   metadataProvider: TsMorphMetadataProvider,

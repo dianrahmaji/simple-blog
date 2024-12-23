@@ -5,6 +5,7 @@ import {
   Options,
 } from "@mikro-orm/sqlite";
 import { Article } from "./modules/article/article.entity.js";
+import { Comment } from "./modules/article/comment.entity.js";
 import { User } from "./modules/user/user.entity.js";
 import { Tag } from "./modules/article/tag.entity.js";
 
@@ -12,6 +13,7 @@ export interface Services {
   orm: MikroORM;
   em: EntityManager;
   article: EntityRepository<Article>;
+  comment: EntityRepository<Comment>;
   user: EntityRepository<User>;
   tag: EntityRepository<Tag>;
 }
@@ -29,6 +31,7 @@ export async function initORM(options?: Options): Promise<Services> {
     orm,
     em: orm.em,
     article: orm.em.getRepository(Article),
+    comment: orm.em.getRepository(Comment),
     user: orm.em.getRepository(User),
     tag: orm.em.getRepository(Tag),
   });
