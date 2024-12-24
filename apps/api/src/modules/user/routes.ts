@@ -25,8 +25,6 @@ export async function registerUserRoutes(app: FastifyInstance) {
     user.bio = body.bio ?? "";
     await db.em.persist(user).flush();
 
-    console.log(`User ${user.id} created`);
-
     return user;
   });
 }
