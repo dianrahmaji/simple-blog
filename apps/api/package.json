@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "node --no-warnings=ExperimentalWarning --loader ts-node/esm src/server.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "mikro-orm": "pnpm mikro-orm-esm"
   },
   "dependencies": {
     "@fastify/jwt": "^9.0.2",

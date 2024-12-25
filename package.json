@@ -8,6 +8,7 @@
   "scripts": {
     "build": "pnpm dlx turbo build",
     "dev": "pnpm dlx turbo dev",
-    "test": "pnpm dlx turbo test"
+    "test": "pnpm dlx turbo test",
+    "mikro-orm": "pnpm dlx turbo mikro-orm --filter=@simple-blog/api"
   }
 }
