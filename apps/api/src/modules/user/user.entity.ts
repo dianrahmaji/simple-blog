@@ -2,6 +2,8 @@ import {
   BeforeCreate,
   BeforeUpdate,
   Collection,
+  Embeddable,
+  Embedded,
   Entity,
   EntityRepositoryType,
   EventArgs,
@@ -12,6 +14,18 @@ import { BaseEntity } from "../common/base.entity.js";
 import { Article } from "../article/article.entity.js";
 import { hash, verify } from "argon2";
 import { UserRepository } from "./user.repository.js";
+
+@Embeddable()
+export class Social {
+  @Property()
+  twitter?: string;
+
+  @Property()
+  facebook?: string;
+
+  @Property()
+  linkedin?: string;
+}
 
 @Entity({ repository: () => UserRepository })
 export class User extends BaseEntity<"bio"> {
@@ -35,6 +49,9 @@ export class User extends BaseEntity<"bio"> {
 
   @Property({ persist: false })
   token?: string;
+
+  @Embedded(() => Social, { object: true })
+  social?: Social;
 
   @OneToMany({ mappedBy: "author" })
   articles = new Collection<Article>(this);

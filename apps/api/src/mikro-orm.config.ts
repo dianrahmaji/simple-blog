@@ -5,7 +5,7 @@ import { Migrator } from "@mikro-orm/migrations";
 
 import { Article } from "./modules/article/article.entity.js";
 import { Comment } from "./modules/article/comment.entity.js";
-import { User } from "./modules/user/user.entity.js";
+import { Social, User } from "./modules/user/user.entity.js";
 import { Tag } from "./modules/article/tag.entity.js";
 
 const config: Options = {
@@ -15,8 +15,10 @@ const config: Options = {
     //
     Article,
     Comment,
-    User,
     Tag,
+
+    User,
+    Social,
   ],
   metadataProvider: TsMorphMetadataProvider,
   debug: true,
