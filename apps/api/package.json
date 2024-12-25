@@ -9,6 +9,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@fastify/jwt": "^9.0.2",
     "@mikro-orm/core": "^6.4.1",
     "@mikro-orm/migrations": "6.4.1",
     "@mikro-orm/reflection": "^6.4.1",

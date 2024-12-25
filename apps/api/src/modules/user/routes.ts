@@ -25,7 +25,18 @@ export async function registerUserRoutes(app: FastifyInstance) {
     user.bio = body.bio ?? "";
     await db.em.persist(user).flush();
 
-    console.log(`User ${user.id} created`);
+    user.token = app.jwt.sign({ id: user.id });
+
+    return user;
+  });
+
+  app.post("/sign-in", async (request) => {
+    const { email, password } = request.body as {
+      email: string;
+      password: string;
+    };
+    const user = await db.user.login(email, password);
+    user.token = app.jwt.sign({ id: user.id });
 
     return user;
   });
