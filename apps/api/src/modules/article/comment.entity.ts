@@ -12,5 +12,5 @@ export class Comment extends BaseEntity {
   article!: Article;
 
   @ManyToOne()
-  user!: User;
+  author!: User;
 }

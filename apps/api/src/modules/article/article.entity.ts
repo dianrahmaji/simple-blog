@@ -8,6 +8,7 @@ import {
   t,
 } from "@mikro-orm/core";
 import { BaseEntity } from "../common/base.entity.js";
+import { Comment } from "./comment.entity.js";
 import { User } from "../user/user.entity.js";
 import { Tag } from "./tag.entity.js";
 
