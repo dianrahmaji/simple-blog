@@ -15,6 +15,7 @@
     "@mikro-orm/migrations": "6.4.1",
     "@mikro-orm/reflection": "^6.4.1",
     "@mikro-orm/seeder": "^6.4.1",
+    "@mikro-orm/sql-highlighter": "^1.0.1",
     "@mikro-orm/sqlite": "^6.4.1",
     "argon2": "^0.41.1",
     "fastify": "^5.2.0",
