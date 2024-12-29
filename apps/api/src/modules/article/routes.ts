@@ -13,7 +13,11 @@ export async function registerArticleRoutes(app: FastifyInstance) {
       offset?: number;
     };
 
-    const { items, total } = await db.article.listArticles({ limit, offset });
+    const { items, total } = await db.article.listArticles({
+      limit,
+      offset,
+      cache: 5_000,
+    });
 
     return { items, total };
   });
