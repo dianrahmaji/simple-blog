@@ -4,16 +4,16 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npx mikro-orm-esm cache:generate --combined",
     "dev": "node --no-warnings=ExperimentalWarning --loader ts-node/esm src/server.ts",
     "test": "vitest",
-    "mikro-orm": "pnpm mikro-orm-esm"
+    "mikro-orm": "pnpm mikro-orm-esm",
+    "start": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "@fastify/jwt": "^9.0.2",
     "@mikro-orm/core": "^6.4.1",
     "@mikro-orm/migrations": "6.4.1",
-    "@mikro-orm/reflection": "^6.4.1",
     "@mikro-orm/seeder": "^6.4.1",
     "@mikro-orm/sql-highlighter": "^1.0.1",
     "@mikro-orm/sqlite": "^6.4.1",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@mikro-orm/cli": "^6.4.1",
+    "@mikro-orm/reflection": "6.4.1",
     "@types/node": "^22.10.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2",

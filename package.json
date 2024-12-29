@@ -9,6 +9,7 @@
     "build": "pnpm dlx turbo build",
     "dev": "pnpm dlx turbo dev",
     "test": "pnpm dlx turbo test",
-    "mikro-orm": "pnpm dlx turbo mikro-orm --filter=@simple-blog/api"
+    "mikro-orm": "pnpm dlx turbo mikro-orm --filter=@simple-blog/api",
+    "start": "pnpm dlx turbo start"
   }
 }
