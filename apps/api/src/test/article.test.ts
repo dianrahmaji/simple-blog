@@ -22,9 +22,30 @@ test("list all articles", async () => {
 
   expect(res.json()).toMatchObject({
     items: [
-      { author: 1, slug: "title-13", title: "title 1/3" },
-      { author: 1, slug: "title-23", title: "title 2/3" },
-      { author: 1, slug: "title-33", title: "title 3/3" },
+      {
+        slug: expect.any(String),
+        title: "title 1/3",
+        description: "desc 1/3",
+        tags: ["foo1", "foo2"],
+        authorName: "Foo Bar",
+        totalComments: 2,
+      },
+      {
+        slug: expect.any(String),
+        title: "title 2/3",
+        description: "desc 2/3",
+        tags: ["foo2"],
+        authorName: "Foo Bar",
+        totalComments: 1,
+      },
+      {
+        slug: expect.any(String),
+        title: "title 3/3",
+        description: "desc 3/3",
+        tags: ["foo2", "foo3"],
+        authorName: "Foo Bar",
+        totalComments: 3,
+      },
     ],
     total: 3,
   });

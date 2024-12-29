@@ -8,6 +8,7 @@ import { Comment } from "./modules/article/comment.entity.js";
 import { Social, User } from "./modules/user/user.entity.js";
 import { Tag } from "./modules/article/tag.entity.js";
 import { SqlHighlighter } from "@mikro-orm/sql-highlighter";
+import { ArticleListing } from "./modules/article/article-listing.entity.js";
 
 const config: Options = {
   driver: SqliteDriver,
@@ -15,6 +16,7 @@ const config: Options = {
   entities: [
     //
     Article,
+    ArticleListing,
     Comment,
     Tag,
 
@@ -27,7 +29,7 @@ const config: Options = {
   migrations: {
     snapshot: false,
   },
-  highlighter: new SqlHighlighter(),
+  highlighter: new SqlHighlighter({}),
 };
 
 export default config;

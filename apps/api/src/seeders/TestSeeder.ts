@@ -5,7 +5,7 @@ import { User } from "../modules/user/user.entity.js";
 
 export class TestSeeder extends Seeder {
   async run(em: EntityManager): Promise<void> {
-    em.create(User, {
+    const author = em.create(User, {
       fullName: "Foo Bar",
       email: "foo@bar.com",
       password: "password123",
@@ -34,6 +34,25 @@ export class TestSeeder extends Seeder {
             { id: 3, name: "foo3" },
           ],
         },
+      ],
+    });
+
+    em.assign(author.articles[0], {
+      comments: [
+        { author, text: `random comment ${Math.random()}` },
+        { author, text: `random comment ${Math.random()}` },
+      ],
+    });
+
+    em.assign(author.articles[1], {
+      comments: [{ author, text: `random comment ${Math.random()}` }],
+    });
+
+    em.assign(author.articles[2], {
+      comments: [
+        { author, text: `random comment ${Math.random()}` },
+        { author, text: `random comment ${Math.random()}` },
+        { author, text: `random comment ${Math.random()}` },
       ],
     });
   }

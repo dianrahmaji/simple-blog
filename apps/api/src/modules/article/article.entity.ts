@@ -1,6 +1,7 @@
 import {
   Collection,
   Entity,
+  EntityRepositoryType,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -11,6 +12,7 @@ import { BaseEntity } from "../common/base.entity.js";
 import { Comment } from "./comment.entity.js";
 import { User } from "../user/user.entity.js";
 import { Tag } from "./tag.entity.js";
+import { ArticleRepository } from "./article.repository.js";
 
 function convertToSlug(text: string) {
   return text
@@ -19,8 +21,10 @@ function convertToSlug(text: string) {
     .replace(/ +/g, "-");
 }
 
-@Entity()
+@Entity({ repository: () => ArticleRepository })
 export class Article extends BaseEntity<"slug" | "description"> {
+  [EntityRepositoryType]?: ArticleRepository;
+
   @Property({ unique: true })
   slug!: string;
 
